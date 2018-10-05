@@ -20,23 +20,27 @@ Doctor(
 );
 
 Company(
-	company			VARCHAR(50)		PRIMARY KEY				NOT NULL
-	phone			INT										NOT NULL
+	company_name	VARCHAR(50)		PRIMARY KEY				NOT NULL
+	phone_number	INT										NOT NULL
 );
 
 Drug(
 	trade_name		VARCHAR(50)		PRIMARY KEY				NOT NULL
 	formula			VARCHAR(100)							NOT NULL
-	company			VARCHAR(50)		FOREIGN KEY (Company)	NOT NULL
+	company_name	VARCHAR(50)		FOREIGN KEY (Company)	NOT NULL
 );
 
 Pharmacy(
-	name			VARCHAR(50)		PRIMARY KEY				NOT NULL
+	pharmacy_name	VARCHAR(50)		PRIMARY KEY				NOT NULL
 	address			VARCHAR(50)								NOT NULL
-	phone			INT										NOT NULL
+	phone_number	INT										NOT NULL
 );
 
-Inventory(
+Product(
+	drug			VARCHAR(50)		PRIMARY KEY				NOT NULL
+	sold_at			VARCHAR(50)		FOREIGN KEY (Pharmacy)	NOT NULL
+	company_name	VARCHAR(50)		FOREIGN KEY (Company)	NOT NULL
+	price			DOUBLE									NOT NULL
 );
 
 Prescription(
@@ -57,16 +61,18 @@ Contract(
 	supervisor		VARCHAR(50)								NOT NULL
 );
 
-RELATIONS:
+RELATIONS AND CONSTRAINTS:
 
-- 	Every Patient must have one primary_doctor, but every Doctor can have
-	mutltiple Patients. (Relation is M-1 between Patient and Doctor)
+- 	Every Patient can visit multiple doctors, and every Doctor can have
+	mutltiple Patients. (Relation is M-M between Patient and Doctor)
 -	Every Drug is related to a Company, if the Company no longer exists,
 	then every drug related to that company must be removed. (Relation is
 	M-1 between Drug and Company)
--	Each Pharmacy can sell multiple Drugs, and has a price for each. The
-	price for each Drug can be different per Pharmacy. (Relation is M-M
-	between Pharmacy and Drugs)
+-	Each Pharmacy can sell multiple Products, and has a price for each. The
+	price for each Product can be different per Pharmacy. Each Product consists
+	of one Drug at a certain price. (Relation is 1-M between Drug and Product,
+	and 1-M between Pharmacy and Product. In this case Product is the intermediary
+	between Drug and Pharmacy)
 -	Doctors can perscribe one or more Drugs for several Patients, and a
 	Patient can obtain Perscriptions from several Doctors. (Relation is
 	1-M between Doctor and Perscription and M-1 between Perscription and
