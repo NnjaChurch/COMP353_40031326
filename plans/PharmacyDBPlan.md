@@ -5,16 +5,16 @@ TABLES:
 |	ATTRIBUTE 		|	TYPE		|	KEY TYPE			|	NECESSITY	|
 -----------------------------------------------------------------------------
 Patient(
-	sin_number		INT				PRIMARY KEY				NOT NULL
-	patient_name	VARCHAR(50)								NOT NULL
+	sin_number		INT										NOT NULL
+	patient_name	VARCHAR(50)		PRIMARY KEY				NOT NULL
 	address			VARCHAR(50)								NOT NULL
 	age				INT										NOT NULL
 	primary_doctor	VARCHAR(50)		FOREIGN KEY (Doctors)	NOT NULL
 );
 
 Doctor(
-	sin_number		INT				PRIMARY KEY				NOT NULL
-	doctor_name		VARCHAR(50)								NOT NULL
+	sin_number		INT										NOT NULL
+	doctor_name		VARCHAR(50)		PRIMARY KEY				NOT NULL
 	specialty		VARCHAR(50)								NOT NULL
 	experience		INT										NOT NULL
 );

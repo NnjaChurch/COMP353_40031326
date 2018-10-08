@@ -48,7 +48,7 @@ CREATE TABLE product(
 	price DOUBLE NOT NULL
 );
 
-CREATE TABLE perscription(
+CREATE TABLE prescription(
 	drug VARCHAR(50) NOT NULL,
 	FOREIGN KEY (drug) REFERENCES drug(trade_name),
 	patient_name VARCHAR(50) NOT NULL,
