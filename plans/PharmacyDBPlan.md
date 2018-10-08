@@ -5,23 +5,23 @@ TABLES:
 |	ATTRIBUTE 		|	TYPE		|	KEY TYPE			|	NECESSITY	|
 -----------------------------------------------------------------------------
 Patient(
-	SIN				INT				PRIMARY KEY				NOT NULL
+	sin_number		INT				PRIMARY KEY				NOT NULL
 	patient_name	VARCHAR(50)								NOT NULL
 	address			VARCHAR(50)								NOT NULL
 	age				INT										NOT NULL
-	primary_doctor	INT				FOREIGN KEY (Doctors)	NOT NULL
+	primary_doctor	VARCHAR(50)		FOREIGN KEY (Doctors)	NOT NULL
 );
 
 Doctor(
-	SIN				INT				PRIMARY KEY				NOT NULL
-	doctor_name		VARCHAR(20)								NOT NULL
+	sin_number		INT				PRIMARY KEY				NOT NULL
+	doctor_name		VARCHAR(50)								NOT NULL
 	specialty		VARCHAR(50)								NOT NULL
 	experience		INT										NOT NULL
 );
 
 Company(
 	company_name	VARCHAR(50)		PRIMARY KEY				NOT NULL
-	phone_number	INT										NOT NULL
+	phone_number	VARCHAR(20)								NOT NULL
 );
 
 Drug(
@@ -33,7 +33,7 @@ Drug(
 Pharmacy(
 	pharmacy_name	VARCHAR(50)		PRIMARY KEY				NOT NULL
 	address			VARCHAR(50)								NOT NULL
-	phone_number	INT										NOT NULL
+	phone_number	VARCHAR(20)								NOT NULL
 );
 
 Product(
@@ -44,10 +44,11 @@ Product(
 );
 
 Prescription(
-	drug			VARCHAR(50)		PRIMARY KEY				NOT NULL
+	drug			VARCHAR(50)		FOREIGN KEY (Drug)		NOT NULL
 	patient_name	VARCHAR(50)		FOREIGN KEY (Patient)	NOT NULL
 	doctor_name		VARCHAR(50)		FOREIGN KEY (Doctor)	NOT NULL
-	date			DATE									NOT NULL
+	(drug, patient_name, doctor_name) PRIMARY KEY
+	given_date		DATE									NOT NULL
 	quantity		INT										NOT NULL
 );
 
