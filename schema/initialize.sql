@@ -28,7 +28,7 @@ CREATE TABLE company(
 
 CREATE TABLE drug(
 	trade_name VARCHAR(50) PRIMARY KEY,
-	forumla VARCHAR(100) NOT NULL,
+	formula VARCHAR(100) NOT NULL,
 	company_name VARCHAR(50) NOT NULL,
 	FOREIGN KEY (company_name) REFERENCES company(company_name)
 );
