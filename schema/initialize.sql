@@ -3,21 +3,23 @@ DROP DATABASE pharmacy_db_40031326;
 CREATE DATABASE pharmacy_db_40031326;
 USE pharmacy_db_40031326;
 
+
+CREATE TABLE doctor(
+	sin_number INT NOT NULL,
+	doctor_name VARCHAR(50) PRIMARY KEY,
+	specialty VARCHAR(50) NOT NULL,
+	experience INT NOT NULL
+);
+
 CREATE TABLE patient(
-	sin_number INT PRIMARY KEY,
-	patient_name VARCHAR(50) NOT NULL,
+	sin_number INT NOT NULL,
+	patient_name VARCHAR(50) PRIMARY KEY,
 	address VARCHAR(50) NOT NULL,
 	age INT NOT NULL,
 	primary_doctor VARCHAR(50) NOT NULL,
 	FOREIGN KEY (primary_doctor) REFERENCES doctor(doctor_name)
 );
 
-CREATE TABLE doctor(
-	sin_number INT PRIMARY KEY,
-	doctor_name VARCHAR(50) NOT NULL,
-	specialty VARCHAR(50) NOT NULL,
-	experience INT NOT NULL
-);
 
 CREATE TABLE company(
 	company_name VARCHAR(50) PRIMARY KEY,
